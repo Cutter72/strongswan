@@ -486,7 +486,7 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 				intent.setAction(VpnProfileControlActivity.START_PROFILE);
 				intent.putExtra(VpnProfileControlActivity.EXTRA_VPN_PROFILE_ID, profile.getUUID().toString());
 				PendingIntent pending = PendingIntent.getActivity(getApplicationContext(), 0, intent,
-																  PendingIntent.FLAG_UPDATE_CURRENT);
+																  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 				builder.addAction(R.drawable.ic_notification_connecting, getString(R.string.retry), pending);
 				add_action = true;
 			}
@@ -522,7 +522,7 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 				Intent intent = new Intent(getApplicationContext(), VpnProfileControlActivity.class);
 				intent.setAction(VpnProfileControlActivity.DISCONNECT);
 				PendingIntent pending = PendingIntent.getActivity(getApplicationContext(), 0, intent,
-																  PendingIntent.FLAG_UPDATE_CURRENT);
+																  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 				builder.addAction(R.drawable.ic_notification_disconnect, getString(R.string.disconnect), pending);
 			}
 			if (error == ErrorState.NO_ERROR)
@@ -534,7 +534,7 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 
 		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 		PendingIntent pending = PendingIntent.getActivity(getApplicationContext(), 0, intent,
-														  PendingIntent.FLAG_UPDATE_CURRENT);
+														  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 		builder.setContentIntent(pending);
 		return builder.build();
 	}
@@ -897,7 +897,7 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 			Context context = getApplicationContext();
 			Intent intent = new Intent(context, MainActivity.class);
 			PendingIntent pending = PendingIntent.getActivity(context, 0, intent,
-															  PendingIntent.FLAG_UPDATE_CURRENT);
+															  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 			builder.setConfigureIntent(pending);
 
 			/* mark all VPN connections as unmetered (default changed for Android 10) */
