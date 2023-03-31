@@ -551,7 +551,7 @@ public class VpnProfileDataSource
 		values.put(KEY_USER_CERTIFICATE, profile.getUserCertificateAlias());
 //		values.put(KEY_MTU, profile.getMTU());
 //		values.put(KEY_PORT, profile.getPort());
-//		values.put(KEY_SPLIT_TUNNELING, profile.getSplitTunneling());
+		values.put(KEY_SPLIT_TUNNELING, profile.getSplitTunneling());
 //		values.put(KEY_LOCAL_ID, profile.getLocalId());
 //		values.put(KEY_REMOTE_ID, profile.getRemoteId());
 		values.put(KEY_EXCLUDED_SUBNETS, profile.getExcludedSubnets());
@@ -566,7 +566,6 @@ public class VpnProfileDataSource
 		//not implemented in ff
 		values.put(KEY_MTU, EMPTY_STRING);
 		values.put(KEY_PORT, EMPTY_STRING);
-		values.put(KEY_SPLIT_TUNNELING, SPLIT_TUNNELING_DEFAULT_VALUE);
 		values.put(KEY_LOCAL_ID, EMPTY_STRING);
 		values.put(KEY_REMOTE_ID, EMPTY_STRING);
 		values = putFancyFonValues(values,profile);
