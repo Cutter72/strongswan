@@ -5,17 +5,17 @@ All rights reserved.
 -->
 
 <resources>
-    
+
     <string name="vpn_profile_crud_service_action">org.strongswan.android.action.VPN_PROFILE_CRUD_SERVICE</string>
     <string name="vpn_profile_crud_messenger_service_action">org.strongswan.android.action.VPN_PROFILE_CRUD_MESSENGER_SERVICE</string>
-    
+
     <string name="vpn_profile_create_action">org.strongswan.android.action.VPN_PROFILE_CREATE</string>
     <string name="vpn_profile_read_action">org.strongswan.android.action.VPN_PROFILE_READ</string>
     <string name="vpn_profile_update_action">org.strongswan.android.action.VPN_PROFILE_UPDATE</string>
     <string name="vpn_profile_delete_action">org.strongswan.android.action.VPN_PROFILE_DELETE</string>
 
     <string name="vpn_profile_crud_permission">org.strongswan.android.permission.VPN_PROFILE_CRUD</string>
-    
+
     <string name="vpn_profile_bundle_id_key">id</string>
     <string name="vpn_profile_bundle_id_params_key">id_%1$s</string>
     <string name="vpn_profile_bundle_ids_key">ids</string>
@@ -39,5 +39,11 @@ All rights reserved.
     <string name="vpn_profile_bundle_type_ikev2_cert_eap_value">ikev2-cert-eap</string>
     <string name="vpn_profile_bundle_type_ikev2_eap_tls_value">ikev2-eap-tls</string>
     <string name="vpn_profile_bundle_type_ikev2_byod_eap_value">ikev2-byod-eap</string>
+
+    <!-- split tunneling -->
+    <string name="vpn_profile_bundle_split_tunneling_subnets">split_tunneling_subnets</string>
+    <string name="vpn_profile_bundle_split_tunneling_excluded">split_tunneling_excluded</string>
+    <string name="vpn_profile_bundle_split_tunneling_block_ipv4">split_tunneling_block_ipv4</string>
+    <string name="vpn_profile_bundle_split_tunneling_block_ipv6">split_tunneling_block_ipv6</string>
 
 </resources>
