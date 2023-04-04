@@ -177,6 +177,7 @@
     <string name="disconnect">Disconnect</string>
     <string name="state_connecting">Connecting&#8230;</string>
     <string name="state_connected">Connected</string>
+    <string name="state_connected_no_internet">Connected (No internet access)</string>
     <string name="state_disconnecting">Disconnecting&#8230;</string>
     <string name="state_disabled">No active VPN</string>
     <string name="state_error">Error</string>
@@ -226,6 +227,13 @@
     <string name="tile_default">Toggle VPN</string>
     <string name="tile_connect">Connect VPN</string>
     <string name="tile_disconnect">Disconnect VPN</string>
+
+    <!-- simple logging -->
+    <string name="simple_log_no_network_access">No Internet access</string>
+    <string name="simple_log_connected">Connected to server</string>
+    <string name="simple_log_disconnected">Disconnected from server</string>
+    <string name="simple_log_auth_failed">User authentication failed</string>
+
 
     <string name="yubikey_profile_not_found">Yubikey profile not found</string>
 

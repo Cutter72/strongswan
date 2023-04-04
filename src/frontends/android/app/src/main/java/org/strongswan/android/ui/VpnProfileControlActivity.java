@@ -93,6 +93,7 @@ public class VpnProfileControlActivity extends AppCompatActivity
 			handleIntent();
 		}
 	};
+	private boolean yubikeyConfirm;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -195,6 +196,7 @@ public class VpnProfileControlActivity extends AppCompatActivity
 		else
 		{	/* user already granted permission to use VpnService */
 			onActivityResult(PREPARE_VPN_SERVICE, RESULT_OK, null);
+			yubikeyConfirm = false;
 		}
 	}
 
@@ -207,21 +209,22 @@ public class VpnProfileControlActivity extends AppCompatActivity
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
 		{
-			PowerManager pm = (PowerManager)this.getSystemService(Context.POWER_SERVICE);
-			SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-			if (!pm.isIgnoringBatteryOptimizations(this.getPackageName()) &&
-				!pref.getBoolean(Constants.PREF_IGNORE_POWER_WHITELIST, false))
-			{
-				if (getSupportFragmentManager().isStateSaved())
-				{	/* we might get called via service connection and manual onActivityResult()
-					 * call when the activity is not active anymore and fragment transactions
-					 * would cause an illegalStateException */
-					return false;
-				}
-				PowerWhitelistRequired whitelist = new PowerWhitelistRequired();
-				whitelist.show(getSupportFragmentManager(), DIALOG_TAG);
-				return false;
-			}
+			// TODO: ignore battery optimization for now
+//			PowerManager pm = (PowerManager)this.getSystemService(Context.POWER_SERVICE);
+//			SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+//			if (!pm.isIgnoringBatteryOptimizations(this.getPackageName()) &&
+//				!pref.getBoolean(Constants.PREF_IGNORE_POWER_WHITELIST, false))
+//			{
+//				if (getSupportFragmentManager().isStateSaved())
+//				{	/* we might get called via service connection and manual onActivityResult()
+//					 * call when the activity is not active anymore and fragment transactions
+//					 * would cause an illegalStateException */
+//					return false;
+//				}
+//				PowerWhitelistRequired whitelist = new PowerWhitelistRequired();
+//				whitelist.show(getSupportFragmentManager(), DIALOG_TAG);
+//				return false;
+//			}
 		}
 		return true;
 	}
@@ -233,6 +236,7 @@ public class VpnProfileControlActivity extends AppCompatActivity
 		{
 			case PREPARE_VPN_SERVICE:
 				mWaitingForResult = false;
+				yubikeyConfirm = false;
 				if (resultCode == RESULT_OK && mProfileInfo != null)
 				{
 					if (checkPowerWhitelist())
@@ -344,17 +348,23 @@ public class VpnProfileControlActivity extends AppCompatActivity
 
 		VpnProfileDataSource dataSource = new VpnProfileDataSource(this);
 		dataSource.open();
-		String profileUUID = intent.getStringExtra(EXTRA_VPN_PROFILE_ID);
-		if (profileUUID != null)
-		{
-			profile = dataSource.getVpnProfile(profileUUID);
-		}
-		else
-		{
-			long profileId = intent.getLongExtra(EXTRA_VPN_PROFILE_ID, 0);
-			if (profileId > 0)
+
+		String profileName = intent.getStringExtra(EXTRA_VPN_PROFILE_ID);
+		profile = dataSource.getVpnProfileByName(profileName);
+
+		if (profile == null) {
+			String profileUUID = intent.getStringExtra(EXTRA_VPN_PROFILE_ID);
+			if (profileUUID != null)
 			{
-				profile = dataSource.getVpnProfile(profileId);
+				profile = dataSource.getVpnProfile(profileUUID);
+			}
+			else
+			{
+				long profileId = intent.getLongExtra(EXTRA_VPN_PROFILE_ID, 0);
+				if (profileId > 0)
+				{
+					profile = dataSource.getVpnProfile(profileId);
+				}
 			}
 		}
 		dataSource.close();
@@ -399,7 +409,11 @@ public class VpnProfileControlActivity extends AppCompatActivity
 		{
 			VpnProfileDataSource dataSource = new VpnProfileDataSource(this);
 			dataSource.open();
-			profile = dataSource.getVpnProfile(profileUUID);
+			profile = dataSource.getVpnProfileByName(profileUUID);
+			if (profile == null) {
+				profile = dataSource.getVpnProfile(profileUUID);
+			}
+
 			dataSource.close();
 		}
 
@@ -478,7 +492,7 @@ public class VpnProfileControlActivity extends AppCompatActivity
 			VpnProfile profile = profiles.get(0);
 			profile.setPassword(password);
 			startVpnProfile(profile);
-			finish();
+			yubikeyConfirm = true;
 		} else {
 			ArrayList<String> profileNames = new ArrayList<>();
 			for (VpnProfile profile : profiles) {

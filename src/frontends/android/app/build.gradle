@@ -6,13 +6,28 @@ android {
     defaultConfig {
         applicationId "org.strongswan.android"
         minSdkVersion 15
-        targetSdkVersion 29
+        targetSdkVersion 31
         versionCode 74
         versionName "2.3.2"
+        ndkVersion "21.4.7075529"
 
         javaCompileOptions {
             annotationProcessorOptions {
                 includeCompileClasspath true
+            }
+        }
+
+        signingConfigs {
+
+            debug {
+                storeFile file("/Users/jacekdermont/praca/Android_Keystore/android.jks")
+                storePassword "xxx"
+                keyAlias "fancyfon"
+                keyPassword "xxx"
+
+                // Optional, specify signing versions used
+                v1SigningEnabled true
+                v2SigningEnabled true
             }
         }
     }
@@ -30,8 +45,8 @@ android {
         }
         fancyfon {
             applicationId "com.fancyfon.strongswan"
-            versionName "1.7.0.2"
-            versionCode 51
+            versionName "1.8.0.1"
+            versionCode 57
             setProperty("archivesBaseName", "strongswan_$versionName")
 
         }
@@ -43,18 +58,18 @@ android {
     }
 
     task buildNative(type: Exec) {
-        workingDir 'src/main/jni'
-        commandLine "${android.ndkDirectory}/ndk-build", '-j', Runtime.runtime.availableProcessors()
+//        workingDir 'src/main/jni'
+//        commandLine "${android.ndkDirectory}/ndk-build", '-j', Runtime.runtime.availableProcessors()
     }
 
     task cleanNative(type: Exec) {
-        workingDir 'src/main/jni'
-        commandLine "${android.ndkDirectory}/ndk-build", 'clean'
+//        workingDir 'src/main/jni'
+//        commandLine "${android.ndkDirectory}/ndk-build", 'clean'
     }
 
     tasks.withType(JavaCompile) {
         compileTask ->
-            if(!project.hasProperty("native-disabled")) {
+            if(!project.hasProperty("native-disabled") && false) {
                 compileTask.dependsOn buildNative
             }
         options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
@@ -79,6 +94,8 @@ dependencies {
     implementation 'androidx.preference:preference:1.1.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.2.1'
+    implementation 'org.apache.commons:commons-lang3:3.5'
+    implementation 'org.greenrobot:eventbus:3.0.0'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.28.2'
     testImplementation 'org.powermock:powermock-core:2.0.2'

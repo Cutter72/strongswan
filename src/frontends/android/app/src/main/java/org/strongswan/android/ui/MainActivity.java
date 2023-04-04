@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements OnVpnProfileSelec
 		if (adapter != null && !isDestroyed()) {
 			PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), NO_FLAGS,
 					new Intent(this, StartYubiKeyVpn.class).
-							addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), NO_FLAGS);
+							addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_UPDATE_CURRENT | 33554432);
 			IntentFilter ndef = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
 			ndef.addDataScheme("http");
 			ndef.addDataScheme("https");

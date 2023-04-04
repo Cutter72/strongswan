@@ -177,6 +177,7 @@
     <string name="disconnect">Rozłącz</string>
     <string name="state_connecting">Łączenie&#8230;</string>
     <string name="state_connected">Połączony</string>
+    <string name="state_connected_no_internet">Połączony (Brak sieci)</string>
     <string name="state_disconnecting">Przerywam połączenie&#8230;</string>
     <string name="state_disabled">Brak aktywnego VPN</string>
     <string name="state_error">Błąd</string>
@@ -226,6 +227,12 @@
     <string name="tile_default">Toggle VPN</string>
     <string name="tile_connect">Connect VPN</string>
     <string name="tile_disconnect">Disconnect VPN</string>
+
+    <!-- simple logging -->
+    <string name="simple_log_no_network_access">Brak dostępu do sieci</string>
+    <string name="simple_log_connected">Połączono z serwerem</string>
+    <string name="simple_log_disconnected">Rozłączono z serwerem</string>
+    <string name="simple_log_auth_failed">Błąd autoryzacji użytkownika</string>
 
     <string name="yubikey_profile_not_found">Nie odnaleziono profilu Yubikey</string>
 

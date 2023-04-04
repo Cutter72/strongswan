@@ -35,10 +35,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.ParcelFileDescriptor;
-import android.security.KeyChain;
 import android.security.KeyChainException;
 import android.system.OsConstants;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import org.strongswan.android.R;
 import org.strongswan.android.data.VpnProfile;
@@ -52,6 +55,7 @@ import org.strongswan.android.logic.imc.RemediationInstruction;
 import org.strongswan.android.security.LocalKeystore;
 import org.strongswan.android.ui.MainActivity;
 import org.strongswan.android.ui.VpnProfileControlActivity;
+import org.strongswan.android.ui.VpnStateFragment;
 import org.strongswan.android.utils.Constants;
 import org.strongswan.android.utils.IPRange;
 import org.strongswan.android.utils.IPRangeSet;
@@ -73,12 +77,7 @@ import java.security.cert.CertificateEncodingException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.SortedSet;
-
-import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
-import androidx.preference.PreferenceManager;
 
 public class CharonVpnService extends VpnService implements Runnable, VpnStateService.VpnStateListener
 {
@@ -87,8 +86,11 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 	public static final String DISCONNECT_ACTION = "org.strongswan.android.CharonVpnService.DISCONNECT";
 	private static final String NOTIFICATION_CHANNEL = "org.strongswan.android.CharonVpnService.VPN_STATE_NOTIFICATION";
 	public static final String LOG_FILE = "charon.log";
+	public static final String SIMPLE_LOG_FILE = "simple_charon.log";
 	public static final String KEY_IS_RETRY = "retry";
 	public static final int VPN_STATE_NOTIFICATION_ID = 1;
+	private static final String NEXT_PROFILE_ACTION = "org.strongswan.android.NEXT_PROFILE_ACTION";
+	private static final String NEXT_PROFILE_EXTRA = "org.strongswan.android.NEXT_PROFILE_EXTRA";
 
 	private String mLogFile;
 	private String mAppDir;
@@ -159,6 +161,9 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 					uuid = pref.getString(Constants.PREF_MRU_VPN_PROFILE, null);
 				}
 				profile = mDataSource.getVpnProfile(uuid);
+				if (profile == null) {
+					profile = selectFirstVpnProfile();
+				}
 			}
 			else if (!DISCONNECT_ACTION.equals(intent.getAction()))
 			{
@@ -186,6 +191,14 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 			setNextProfile(profile);
 		}
 		return START_NOT_STICKY;
+	}
+
+	private VpnProfile selectFirstVpnProfile() {
+		List<VpnProfile> vpnProfiles = mDataSource.getAllVpnProfiles();
+		if (vpnProfiles != null && !vpnProfiles.isEmpty()) {
+			return vpnProfiles.get(0);
+		}
+		return null;
 	}
 
 	@Override
@@ -247,8 +260,16 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 		{
 			this.mNextProfile = profile;
 			mProfileUpdated = true;
+			sendBroadcastNextProfile(profile);
 			notifyAll();
 		}
+	}
+
+	// TODO: security, permission?
+	private void sendBroadcastNextProfile(VpnProfile profile) {
+		Intent broadcastIntent = new Intent(NEXT_PROFILE_ACTION);
+		broadcastIntent.putExtra(NEXT_PROFILE_EXTRA, profile != null ? profile.getName() : null);
+		sendBroadcast(broadcastIntent);
 	}
 
 	@Override
@@ -465,7 +486,7 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 				intent.setAction(VpnProfileControlActivity.START_PROFILE);
 				intent.putExtra(VpnProfileControlActivity.EXTRA_VPN_PROFILE_ID, profile.getUUID().toString());
 				PendingIntent pending = PendingIntent.getActivity(getApplicationContext(), 0, intent,
-																  PendingIntent.FLAG_UPDATE_CURRENT);
+																  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 				builder.addAction(R.drawable.ic_notification_connecting, getString(R.string.retry), pending);
 				add_action = true;
 			}
@@ -483,7 +504,7 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 					add_action = true;
 					break;
 				case CONNECTED:
-					s = R.string.state_connected;
+					s = VpnStateFragment.isConnected(getApplicationContext()) ? R.string.state_connected : R.string.state_connected_no_internet;
 					builder.setColor(ContextCompat.getColor(this, R.color.success_text));
 					builder.setUsesChronometer(true);
 					add_action = true;
@@ -501,7 +522,7 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 				Intent intent = new Intent(getApplicationContext(), VpnProfileControlActivity.class);
 				intent.setAction(VpnProfileControlActivity.DISCONNECT);
 				PendingIntent pending = PendingIntent.getActivity(getApplicationContext(), 0, intent,
-																  PendingIntent.FLAG_UPDATE_CURRENT);
+																  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 				builder.addAction(R.drawable.ic_notification_disconnect, getString(R.string.disconnect), pending);
 			}
 			if (error == ErrorState.NO_ERROR)
@@ -513,7 +534,7 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 
 		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 		PendingIntent pending = PendingIntent.getActivity(getApplicationContext(), 0, intent,
-														  PendingIntent.FLAG_UPDATE_CURRENT);
+														  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 		builder.setContentIntent(pending);
 		return builder.build();
 	}
@@ -876,7 +897,7 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 			Context context = getApplicationContext();
 			Intent intent = new Intent(context, MainActivity.class);
 			PendingIntent pending = PendingIntent.getActivity(context, 0, intent,
-															  PendingIntent.FLAG_UPDATE_CURRENT);
+															  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 			builder.setConfigureIntent(pending);
 
 			/* mark all VPN connections as unmetered (default changed for Android 10) */
@@ -1161,6 +1182,11 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 			mSplitTunneling = splitTunneling != null ? splitTunneling : 0;
 			SelectedAppsHandling appHandling = profile.getSelectedAppsHandling();
 			mSelectedApps = profile.getSelectedAppsSet();
+			if (profile.getAllowedApplications() != null && !profile.getAllowedApplications().isEmpty()) {
+				appHandling = SelectedAppsHandling.SELECTED_APPS_ONLY;
+				mSelectedApps.clear();
+				mSelectedApps.addAll(profile.getAllowedApplications());
+			}
 			/* exclude our own app, otherwise the fetcher is blocked */
 			switch (appHandling)
 			{

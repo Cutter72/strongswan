@@ -18,12 +18,17 @@ package org.strongswan.android.logic;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkRequest;
 import android.os.Binder;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.SystemClock;
+import android.util.Log;
 
 import org.strongswan.android.R;
 import org.strongswan.android.data.VpnProfile;
@@ -60,6 +65,8 @@ public class VpnStateService extends Service
 	private RetryTimeoutProvider mTimeoutProvider = new RetryTimeoutProvider();
 	private long mRetryTimeout;
 	private long mRetryIn;
+	private ConnectivityManager.NetworkCallback mCallback;
+	private ConnectivityManager connectivityManager;
 
 	public enum State
 	{
@@ -108,6 +115,43 @@ public class VpnStateService extends Service
 		/* this handler allows us to notify listeners from the UI thread and
 		 * not from the threads that actually report any state changes */
 		mHandler = new RetryHandler(this);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+		{
+			mCallback = new ConnectivityManager.NetworkCallback()
+			{
+				@Override
+				public void onAvailable(Network network)
+				{
+					synchronized (VpnStateService.this)
+					{
+						notifyListeners(new Callable<Boolean>() {
+							@Override
+							public Boolean call() throws Exception {
+								return true;
+							}
+						});
+					}
+				}
+
+				@Override
+				public void onLost(Network network)
+				{
+					synchronized (VpnStateService.this)
+					{
+						notifyListeners(new Callable<Boolean>() {
+							@Override
+							public Boolean call() throws Exception {
+								return true;
+							}
+						});
+					}
+				}
+			};
+
+			connectivityManager = getSystemService(ConnectivityManager.class);
+			NetworkRequest.Builder builder = new NetworkRequest.Builder();
+			connectivityManager.registerNetworkCallback(builder.build(), mCallback);
+		}
 	}
 
 	@Override
@@ -119,6 +163,10 @@ public class VpnStateService extends Service
 	@Override
 	public void onDestroy()
 	{
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && mCallback != null) {
+			connectivityManager.unregisterNetworkCallback(mCallback);
+			mCallback = null;
+		}
 	}
 
 	/**

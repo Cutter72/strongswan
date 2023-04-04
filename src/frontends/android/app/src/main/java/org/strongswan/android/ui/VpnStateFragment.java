@@ -17,13 +17,18 @@
 
 package org.strongswan.android.ui;
 
+import android.annotation.TargetApi;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,6 +82,34 @@ public class VpnStateFragment extends Fragment implements VpnStateListener
 			}
 		}
 	};
+
+	@SuppressWarnings("deprecation")
+	@TargetApi(Build.VERSION_CODES.Q)
+	public static boolean isConnected(Context context)
+	{
+		ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+			NetworkCapabilities capabilities = cm.getNetworkCapabilities(cm.getActiveNetwork());
+			if (capabilities != null) {
+				if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+					return true;
+				} else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+					return true;
+				}  else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+					return true;
+				}
+			}
+			return false;
+		} else {
+			/* deprecated since API level 29 */
+			android.net.NetworkInfo info = null;
+			if (cm != null)
+			{
+				info = cm.getActiveNetworkInfo();
+			}
+			return info != null && info.isConnected();
+		}
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -216,7 +249,7 @@ public class VpnStateFragment extends Fragment implements VpnStateListener
 				showProfile(true);
 				mProgress.setVisibility(View.GONE);
 				enableActionButton(getString(R.string.disconnect));
-				mStateView.setText(R.string.state_connected);
+				mStateView.setText(isConnected(getActivity()) ? R.string.state_connected : R.string.state_connected_no_internet);
 				mStateView.setTextColor(mColorStateSuccess);
 				break;
 			case DISCONNECTING:

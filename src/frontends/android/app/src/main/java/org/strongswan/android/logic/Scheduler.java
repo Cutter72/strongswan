@@ -81,7 +81,7 @@ public class Scheduler extends BroadcastReceiver
 		/* using component/class doesn't work with dynamic broadcast receivers */
 		Intent intent = new Intent(EXECUTE_JOB);
 		intent.setPackage(mContext.getPackageName());
-		return PendingIntent.getBroadcast(mContext, 0, intent, 0);
+		return PendingIntent.getBroadcast(mContext, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 	}
 
 	/**
