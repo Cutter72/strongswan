@@ -259,6 +259,13 @@ public class VpnProfile implements Cloneable
 		this.mNATKeepAlive = keepalive;
 	}
 
+	public void setExcludedSubnets(String[] excludedSubnets)
+	{
+		if (excludedSubnets != null) {
+			setExcludedSubnets(String.join(" ", excludedSubnets));
+		}
+	}
+
 	public void setExcludedSubnets(String excludedSubnets)
 	{
 		this.mExcludedSubnets = excludedSubnets;
@@ -267,6 +274,13 @@ public class VpnProfile implements Cloneable
 	public String getExcludedSubnets()
 	{
 		return mExcludedSubnets;
+	}
+
+	public void setIncludedSubnets(String[] includedSubnets)
+	{
+		if (includedSubnets != null) {
+			setIncludedSubnets(String.join(" ", includedSubnets));
+		}
 	}
 
 	public void setIncludedSubnets(String includedSubnets)
@@ -465,8 +479,8 @@ public class VpnProfile implements Cloneable
 			bundle.getBoolean(resources.getString(R.string.vpn_profile_bundle_split_tunneling_block_ipv4)),
 			bundle.getBoolean(resources.getString(R.string.vpn_profile_bundle_split_tunneling_block_ipv6))
 		);
-		setIncludedSubnets(String.join(" ", bundle.getStringArray(resources.getString(R.string.vpn_profile_bundle_split_tunneling_subnets))));
-		setExcludedSubnets(String.join(" ", bundle.getStringArray(resources.getString(R.string.vpn_profile_bundle_split_tunneling_excluded))));
+		setIncludedSubnets(bundle.getStringArray(resources.getString(R.string.vpn_profile_bundle_split_tunneling_subnets)));
+		setExcludedSubnets(bundle.getStringArray(resources.getString(R.string.vpn_profile_bundle_split_tunneling_excluded)));
 	}
 
 	private void prepareAndSetSplitTunneling(boolean blockIpv4, boolean  blockIpv6) {
