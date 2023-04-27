@@ -48,7 +48,6 @@ public class IPRangeSet implements Iterable<IPRange>
 				catch (Exception unused)
 				{	/* besides due to invalid strings exceptions might get thrown if the string
 					 * contains a hostname (NetworkOnMainThreadException) */
-					return null;
 				}
 			}
 		}
