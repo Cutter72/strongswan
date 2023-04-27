@@ -487,7 +487,7 @@ public class VpnProfile implements Cloneable
 		int splitTunneling = 0;
 		splitTunneling |= blockIpv4 ? VpnProfile.SPLIT_TUNNELING_BLOCK_IPV4 : 0;
 		splitTunneling |= blockIpv6 ? VpnProfile.SPLIT_TUNNELING_BLOCK_IPV6 : 0;
-		setSplitTunneling(splitTunneling);
+		setSplitTunneling(splitTunneling == 0 ? null : splitTunneling);
 	}
 
 	@Override
