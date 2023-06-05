@@ -49,7 +49,7 @@ public class VpnProfileSelectActivity extends AppCompatActivity implements OnVpn
 		ShortcutInfoCompat.Builder builder = new ShortcutInfoCompat.Builder(this, profile.getUUID().toString());
 		builder.setIntent(shortcut);
 		builder.setShortLabel(profile.getName());
-		builder.setIcon(IconCompat.createWithResource(this, R.mipmap.ic_shortcut));
+		builder.setIcon(IconCompat.createWithResource(this, R.drawable.branded_app_icon));
 		setResult(RESULT_OK, ShortcutManagerCompat.createShortcutResultIntent(this, builder.build()));
 		finish();
 	}
