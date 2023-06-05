@@ -37,4 +37,16 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="BrandedTextAppearanceSmall" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/brandedBlack</item>
+    </style>
+
+    <style name="BrandedTextAppearanceMedium" parent="android:TextAppearance.DeviceDefault.Medium">
+        <item name="android:textColor">@color/brandedBlack</item>
+    </style>
+
+    <style name="BrandedTextAppearanceLarge" parent="android:TextAppearance.DeviceDefault.Large">
+        <item name="android:textColor">@color/brandedBlack</item>
+    </style>
+
 </resources>
