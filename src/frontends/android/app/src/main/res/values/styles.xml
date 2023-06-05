@@ -13,14 +13,32 @@
     or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
     for more details.
 -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="ApplicationTheme.Base" parent="Theme.AppCompat">
+    <!-- Strongswan theme -->
+    <style name="StrongswanTheme" parent="Theme.MaterialComponents.Light">
         <item name="colorAccent">@color/accent</item>
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="android:alertDialogTheme">@style/AlertDialogTheme</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+    </style>
+
+    <!-- Branded theme -->
+    <style name="BrandedTheme" parent="StrongswanTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/brandedPrimary</item>
+        <item name="colorOnPrimary">@color/brandedOnPrimary</item>
+        <item name="colorPrimaryDark">@color/brandedOnSecondary</item>
+        <item name="colorAccent">@color/brandedAccent</item>
+        <item name="statusBarBackground">@color/brandedPrimary</item>
+        <!-- tools:targetApi="27" will apply this item on API 27 and higher while separating this in dedicated v27 folder will apply it only in API 27 -->
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+        <item name="android:navigationBarColor">@color/brandedPrimary</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/brandedPrimary</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
     <style name="AlertDialogTheme.Base" parent="Theme.AppCompat.Dialog.Alert">
