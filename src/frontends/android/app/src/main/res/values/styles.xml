@@ -67,4 +67,18 @@
         <item name="android:textColor">@color/brandedBlack</item>
     </style>
 
+    <style name="BrandedTheme.PrimaryButton" parent="BrandedTheme">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:layout_marginRight">4dp</item>
+        <item name="backgroundTint">@color/brandedAccent</item>
+        <item name="rippleColor">@color/white</item>
+    </style>
+
+    <style name="BrandedTheme.PrimaryButton.Error" parent="BrandedTheme.PrimaryButton">
+        <item name="backgroundTint">@color/error_text</item>
+    </style>
+
 </resources>
