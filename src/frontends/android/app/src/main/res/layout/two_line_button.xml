@@ -17,7 +17,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:background="?android:attr/selectableItemBackground"
+    android:background="@color/checkable_card_color"
     android:mode="twoLine"
     android:focusable="true"
     android:padding="10dp" >

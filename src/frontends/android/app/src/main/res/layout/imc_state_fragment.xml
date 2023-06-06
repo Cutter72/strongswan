@@ -23,7 +23,7 @@
         android:id="@+id/imc_state_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
+        android:background="@color/checkable_card_color"
         android:orientation="vertical" >
 
         <LinearLayout
