@@ -26,7 +26,7 @@
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/error_background"
+        android:background="@color/brandedWarning"
         android:orientation="vertical" >
 
         <TextView
@@ -38,7 +38,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="12dp"
             android:text="Failed to establish VPN: Server is unreachable"
-            android:textColor="@color/primary_dark"
+            android:textColor="@color/brandedBlack"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/retry"
-                style="@style/BrandedTheme.PrimaryButton.Error" >
+                style="@style/BrandedTheme.PrimaryButton" >
             </com.google.android.material.button.MaterialButton>
         </LinearLayout>
     </LinearLayout>
