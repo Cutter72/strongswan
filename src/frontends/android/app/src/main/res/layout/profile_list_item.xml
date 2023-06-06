@@ -23,7 +23,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/activatedBackgroundIndicator"
+        android:background="@color/checkable_card_color"
         android:orientation="vertical"
         android:paddingTop="4dip"
         android:paddingBottom="6dip">

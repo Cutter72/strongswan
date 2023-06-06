@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright © 2023 Techstep Poland S.A.
+    All rights reserved.
+
+    Author Paweł Drelich <pawel.drelich@techstep.io>
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/brandedItemSelected" android:drawable="@color/brandedItemSelected" android:state_activated="true" />
+    <item android:color="@color/transparent" android:drawable="@color/transparent" />
+</selector>
