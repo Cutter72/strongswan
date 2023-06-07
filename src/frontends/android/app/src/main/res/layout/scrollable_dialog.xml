@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/dialog_title_bar" />
+
+    <ScrollView
+        android:id="@+id/scrollable_content"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/dialog_content_margin"
+        android:layout_marginRight="@dimen/dialog_content_margin"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:background="@color/transparent">
+
+    </ScrollView>
+
+    <include
+        android:id="@+id/footer"
+        layout="@layout/dialog_footer" />
+
+</LinearLayout>
