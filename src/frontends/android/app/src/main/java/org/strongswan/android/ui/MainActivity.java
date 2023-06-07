@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements OnVpnProfileSelec
 			}
 			size = Formatter.formatFileSize(getActivity(), s);
 
-			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+			AlertDialog.Builder builder = new ScrollableDialogBuilder(getActivity())
 					.setTitle(R.string.clear_crl_cache_title)
 					.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
 					{

@@ -654,7 +654,7 @@ public class VpnProfileControlActivity extends AppCompatActivity
 			username.setText(profileInfo.getString(VpnProfileDataSource.KEY_USERNAME));
 			final EditText password = (EditText)view.findViewById(R.id.password);
 
-			AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
+			AlertDialog.Builder adb = new ScrollableDialogBuilder(getActivity());
 			adb.setView(view);
 			adb.setTitle(getString(R.string.login_title));
 			adb.setPositiveButton(R.string.login_confirm, new DialogInterface.OnClickListener()
@@ -694,7 +694,7 @@ public class VpnProfileControlActivity extends AppCompatActivity
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState)
 		{
-			return new AlertDialog.Builder(getActivity())
+			return new ScrollableDialogBuilder(getActivity())
 				.setTitle(R.string.power_whitelist_title)
 				.setMessage(R.string.power_whitelist_text)
 				.setPositiveButton(android.R.string.ok, (dialog, id) -> {
@@ -735,7 +735,7 @@ public class VpnProfileControlActivity extends AppCompatActivity
 		{
 			final Bundle arguments = getArguments();
 			final int messageId = arguments.getInt(ERROR_MESSAGE_ID);
-			return new AlertDialog.Builder(getActivity())
+			return new ScrollableDialogBuilder(getActivity())
 				.setTitle(R.string.vpn_not_supported_title)
 				.setMessage(messageId)
 				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
