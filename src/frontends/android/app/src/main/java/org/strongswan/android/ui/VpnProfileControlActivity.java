@@ -26,7 +26,6 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -37,6 +36,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.strongswan.android.R;
 import org.strongswan.android.data.VpnProfile;
@@ -509,24 +509,22 @@ public class VpnProfileControlActivity extends AppCompatActivity
 			final Bundle profileInfo = getArguments();
 			int icon = R.drawable.information_message;
 			String title = "Choose VPN profile";
+			List<String> profileNames = profileInfo.getStringArrayList(KEY_PROFILE_LIST);
 
-			final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_singlechoice);
-			for (String profileName : profileInfo.getStringArrayList(KEY_PROFILE_LIST)) {
-				arrayAdapter.add(profileName);
-			}
+			DialogInterface.OnClickListener onClickListener = (dialog, which) -> {
+				String profileName = profileNames.get(which);
+				String password = profileInfo.getString(KEY_PASSWORD);
+				VpnProfileControlActivity activity = (VpnProfileControlActivity) getActivity();
+				activity.startVpnProfile(profileName, password);
+			};
 
-			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+			RecyclerView.Adapter<ProfileRecyclerViewAdapter.ViewHolder> adapter =
+				new ProfileRecyclerViewAdapter(profileNames, onClickListener);
+
+			AlertDialog.Builder builder = new RecyclerDialogBuilder(getActivity())
 				.setIcon(icon)
 				.setTitle(title)
-				.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						String profileName = arrayAdapter.getItem(which);
-						String password = profileInfo.getString(KEY_PASSWORD);
-						VpnProfileControlActivity activity = (VpnProfileControlActivity) getActivity();
-						activity.startVpnProfile(profileName,password);
-					}
-				});
+				.setAdapter(adapter);
 			builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
