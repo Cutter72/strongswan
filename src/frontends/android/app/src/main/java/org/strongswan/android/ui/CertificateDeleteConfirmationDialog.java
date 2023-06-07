@@ -57,7 +57,7 @@ public class CertificateDeleteConfirmationDialog extends AppCompatDialogFragment
 	public Dialog onCreateDialog(Bundle savedInstanceState)
 	{
 		return new AlertDialog.Builder(getActivity())
-			.setIcon(android.R.drawable.ic_dialog_alert)
+			.setIcon(R.drawable.notification_warn_icon)
 			.setTitle(R.string.delete_certificate_question)
 			.setMessage(R.string.delete_certificate)
 			.setPositiveButton(R.string.delete_profile, new DialogInterface.OnClickListener() {

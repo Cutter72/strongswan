@@ -507,7 +507,7 @@ public class VpnProfileControlActivity extends AppCompatActivity
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 			final Bundle profileInfo = getArguments();
-			int icon = android.R.drawable.ic_dialog_info;
+			int icon = R.drawable.information_message;
 			String title = "Choose VPN profile";
 
 			final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_singlechoice);
@@ -555,14 +555,14 @@ public class VpnProfileControlActivity extends AppCompatActivity
 		public Dialog onCreateDialog(Bundle savedInstanceState)
 		{
 			final Bundle profileInfo = getArguments();
-			int icon = android.R.drawable.ic_dialog_alert;
+			int icon = R.drawable.notification_warn_icon;
 			int title = R.string.connect_profile_question;
 			int message = R.string.replaces_active_connection;
 			int button = R.string.connect;
 
 			if (profileInfo.getBoolean(PROFILE_RECONNECT))
 			{
-				icon = android.R.drawable.ic_dialog_info;
+				icon = R.drawable.information_message;
 				title = R.string.vpn_connected;
 				message = R.string.vpn_profile_connected;
 				button = R.string.reconnect;
