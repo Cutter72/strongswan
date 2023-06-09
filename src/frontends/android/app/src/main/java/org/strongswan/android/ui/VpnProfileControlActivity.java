@@ -17,33 +17,17 @@ package org.strongswan.android.ui;
 
 import android.app.Dialog;
 import android.app.Service;
-import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.net.Uri;
 import android.net.VpnService;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.PowerManager;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import org.strongswan.android.R;
-import org.strongswan.android.data.VpnProfile;
-import org.strongswan.android.data.VpnProfileDataSource;
-import org.strongswan.android.data.VpnType.VpnTypeFeature;
-import org.strongswan.android.logic.VpnStateService;
-import org.strongswan.android.logic.VpnStateService.State;
-import org.strongswan.android.utils.Constants;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -52,7 +36,14 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.preference.PreferenceManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import org.strongswan.android.R;
+import org.strongswan.android.data.VpnProfile;
+import org.strongswan.android.data.VpnProfileDataSource;
+import org.strongswan.android.data.VpnType.VpnTypeFeature;
+import org.strongswan.android.logic.VpnStateService;
+import org.strongswan.android.logic.VpnStateService.State;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -516,26 +507,24 @@ public class VpnProfileControlActivity extends AppCompatActivity
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 			final Bundle profileInfo = getArguments();
-			int icon = android.R.drawable.ic_dialog_info;
+			int icon = R.drawable.information_message;
 			String title = "Choose VPN profile";
+			List<String> profileNames = profileInfo.getStringArrayList(KEY_PROFILE_LIST);
 
-			final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_singlechoice);
-			for (String profileName : profileInfo.getStringArrayList(KEY_PROFILE_LIST)) {
-				arrayAdapter.add(profileName);
-			}
+			DialogInterface.OnClickListener onClickListener = (dialog, which) -> {
+				String profileName = profileNames.get(which);
+				String password = profileInfo.getString(KEY_PASSWORD);
+				VpnProfileControlActivity activity = (VpnProfileControlActivity) getActivity();
+				activity.startVpnProfile(profileName, password);
+			};
 
-			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+			RecyclerView.Adapter<ProfileRecyclerViewAdapter.ViewHolder> adapter =
+				new ProfileRecyclerViewAdapter(profileNames, onClickListener);
+
+			AlertDialog.Builder builder = new RecyclerDialogBuilder(getActivity())
 				.setIcon(icon)
 				.setTitle(title)
-				.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						String profileName = arrayAdapter.getItem(which);
-						String password = profileInfo.getString(KEY_PASSWORD);
-						VpnProfileControlActivity activity = (VpnProfileControlActivity) getActivity();
-						activity.startVpnProfile(profileName,password);
-					}
-				});
+				.setAdapter(adapter);
 			builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
@@ -564,14 +553,14 @@ public class VpnProfileControlActivity extends AppCompatActivity
 		public Dialog onCreateDialog(Bundle savedInstanceState)
 		{
 			final Bundle profileInfo = getArguments();
-			int icon = android.R.drawable.ic_dialog_alert;
+			int icon = R.drawable.notification_warn_icon;
 			int title = R.string.connect_profile_question;
 			int message = R.string.replaces_active_connection;
 			int button = R.string.connect;
 
 			if (profileInfo.getBoolean(PROFILE_RECONNECT))
 			{
-				icon = android.R.drawable.ic_dialog_info;
+				icon = R.drawable.information_message;
 				title = R.string.vpn_connected;
 				message = R.string.vpn_profile_connected;
 				button = R.string.reconnect;
@@ -614,7 +603,7 @@ public class VpnProfileControlActivity extends AppCompatActivity
 				}
 			};
 
-			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+			AlertDialog.Builder builder = new ScrollableDialogBuilder(getActivity())
 				.setIcon(icon)
 				.setTitle(String.format(getString(title), profileInfo.getString(PROFILE_NAME)))
 				.setMessage(message);
@@ -663,7 +652,7 @@ public class VpnProfileControlActivity extends AppCompatActivity
 			username.setText(profileInfo.getString(VpnProfileDataSource.KEY_USERNAME));
 			final EditText password = (EditText)view.findViewById(R.id.password);
 
-			AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
+			AlertDialog.Builder adb = new ScrollableDialogBuilder(getActivity());
 			adb.setView(view);
 			adb.setTitle(getString(R.string.login_title));
 			adb.setPositiveButton(R.string.login_confirm, new DialogInterface.OnClickListener()
@@ -703,7 +692,7 @@ public class VpnProfileControlActivity extends AppCompatActivity
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState)
 		{
-			return new AlertDialog.Builder(getActivity())
+			return new ScrollableDialogBuilder(getActivity())
 				.setTitle(R.string.power_whitelist_title)
 				.setMessage(R.string.power_whitelist_text)
 				.setPositiveButton(android.R.string.ok, (dialog, id) -> {
@@ -744,7 +733,7 @@ public class VpnProfileControlActivity extends AppCompatActivity
 		{
 			final Bundle arguments = getArguments();
 			final int messageId = arguments.getInt(ERROR_MESSAGE_ID);
-			return new AlertDialog.Builder(getActivity())
+			return new ScrollableDialogBuilder(getActivity())
 				.setTitle(R.string.vpn_not_supported_title)
 				.setMessage(messageId)
 				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()

@@ -15,6 +15,7 @@
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:background="@color/brandedBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
@@ -44,8 +45,8 @@
             android:drawablePadding="8dp"
             android:textStyle="bold"
             android:text="@string/profile_import_exists"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?android:attr/textColorPrimary" />
+            android:textAppearance="@style/BrandedTextAppearanceSmall"
+            android:textColor="@color/brandedOnPrimary" />
 
         <LinearLayout
             android:id="@+id/basic_data_group"
@@ -67,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAppearance="@style/BrandedTextAppearanceMedium"
                 android:textColor="?android:attr/textColorPrimary" />
 
             <TextView
@@ -83,9 +84,9 @@
                 android:id="@+id/gateway"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginLeft="4dp"
+                android:textAppearance="@style/BrandedTextAppearanceMedium"
                 android:textColor="?android:attr/textColorPrimary" />
 
             <TextView
@@ -104,7 +105,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAppearance="@style/BrandedTextAppearanceMedium"
                 android:textColor="?android:attr/textColorPrimary" />
 
         </LinearLayout>

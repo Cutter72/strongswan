@@ -201,8 +201,8 @@ public class TrustedCertificateImportActivity extends AppCompatActivity
 
 			certificate = (X509Certificate)getArguments().getSerializable(VpnProfileDataSource.KEY_CERTIFICATE);
 
-			return new AlertDialog.Builder(getActivity())
-				.setIcon(R.mipmap.ic_launcher)
+			return new ScrollableDialogBuilder(getActivity())
+				.setIcon(R.drawable.branded_app_icon)
 				.setTitle(R.string.import_certificate)
 				.setMessage(certificate.getSubjectDN().toString())
 				.setPositiveButton(R.string.import_certificate, new DialogInterface.OnClickListener()

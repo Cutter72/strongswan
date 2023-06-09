@@ -16,6 +16,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/brandedBackground"
     android:orientation="vertical"
     android:padding="5dp" >
 
@@ -25,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:textIsSelectable="true"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="@style/BrandedTextAppearanceLarge" />
 
     <TextView
         android:id="@+id/description"
@@ -33,8 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:textIsSelectable="true"
-        android:textColor="?android:textColorSecondary"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textColor="@color/brandedOnSecondary"
+        android:textAppearance="@style/BrandedTextAppearanceMedium" />
 
     <TextView
         android:id="@+id/list_header"
@@ -43,7 +44,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:textIsSelectable="true"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="@style/BrandedTextAppearanceMedium" />
 
     <FrameLayout
         android:id="@+id/list_container"

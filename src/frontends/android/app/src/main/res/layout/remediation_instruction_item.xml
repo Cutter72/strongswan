@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="@style/BrandedTextAppearanceMedium"
         android:textIsSelectable="false" />
 
     <TextView
@@ -38,8 +38,8 @@
         android:layout_below="@android:id/text1"
         android:layout_alignLeft="@android:id/text1"
         android:layout_alignRight="@android:id/text1"
-        android:textColor="?android:textColorSecondary"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/brandedOnSecondary"
+        android:textAppearance="@style/BrandedTextAppearanceSmall"
         android:singleLine="true"
         android:ellipsize="end"
         android:textIsSelectable="false" />

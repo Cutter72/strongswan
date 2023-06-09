@@ -15,10 +15,10 @@
 -->
 <resources>
 
-    <style name="ApplicationTheme" parent="ApplicationTheme.Base">
+    <style name="ApplicationTheme" parent="BrandedTheme">
     </style>
 
-    <style name="AlertDialogTheme" parent="AlertDialogTheme.Base">
+    <style name="AlertDialogTheme" parent="BrandedTheme">
     </style>
 
 </resources>

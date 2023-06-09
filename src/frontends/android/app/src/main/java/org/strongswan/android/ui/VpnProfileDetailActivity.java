@@ -1047,7 +1047,7 @@ public class VpnProfileDetailActivity extends AppCompatActivity
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState)
 		{
-			return new AlertDialog.Builder(getActivity())
+			return new ScrollableDialogBuilder(getActivity())
 				.setTitle(R.string.tnc_notice_title)
 				.setMessage(HtmlCompat.fromHtml(getString(R.string.tnc_notice_details), HtmlCompat.FROM_HTML_MODE_LEGACY))
 				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
