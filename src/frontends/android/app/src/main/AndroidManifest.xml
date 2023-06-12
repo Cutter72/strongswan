@@ -25,6 +25,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
 
     <permission android:name="org.strongswan.android.permission.VPN_PROFILE_CHANGED_FROM_REMOTE" />
     <uses-permission android:name="org.strongswan.android.permission.VPN_PROFILE_CHANGED_FROM_REMOTE" />

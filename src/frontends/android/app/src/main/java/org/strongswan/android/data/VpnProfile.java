@@ -439,8 +439,13 @@ public class VpnProfile implements Cloneable
 		bundle.putInt(resources.getString(R.string.vpn_profile_bundle_logging_level),getLoggingLevel());
 		bundle.putBoolean(resources.getString(R.string.vpn_profile_bundle_by_yubikey), isByYubikey());
 		bundle.putStringArrayList(resources.getString(R.string.vpn_profile_bundle_exclude_package_name), new ArrayList<>(getExcludePackageNameList()));
-		bundle.putBoolean(resources.getString(R.string.vpn_profile_bundle_split_tunneling_block_ipv4), isIpv4Blocked(mSplitTunneling));
-		bundle.putBoolean(resources.getString(R.string.vpn_profile_bundle_split_tunneling_block_ipv6), isIpv6Blocked(mSplitTunneling));
+		if (mSplitTunneling == null) {
+			bundle.putBoolean(resources.getString(R.string.vpn_profile_bundle_split_tunneling_block_ipv4), false);
+			bundle.putBoolean(resources.getString(R.string.vpn_profile_bundle_split_tunneling_block_ipv6), false);
+		} else {
+			bundle.putBoolean(resources.getString(R.string.vpn_profile_bundle_split_tunneling_block_ipv4), isIpv4Blocked(mSplitTunneling));
+			bundle.putBoolean(resources.getString(R.string.vpn_profile_bundle_split_tunneling_block_ipv6), isIpv6Blocked(mSplitTunneling));
+		}
 		bundle.putStringArray(resources.getString(R.string.vpn_profile_bundle_split_tunneling_subnets), getSubnetsStringArrayFromString(mIncludedSubnets));
 		bundle.putStringArray(resources.getString(R.string.vpn_profile_bundle_split_tunneling_excluded), getSubnetsStringArrayFromString(mExcludedSubnets));
 		return bundle;
@@ -455,6 +460,9 @@ public class VpnProfile implements Cloneable
 	}
 
 	public String[] getSubnetsStringArrayFromString(String spaceSeparatedSubnetsString) {
+		if (spaceSeparatedSubnetsString == null) {
+			return new String[0];
+		}
 		if (TextUtils.isEmpty(spaceSeparatedSubnetsString.trim())) {
 			return new String[0];
 		}
