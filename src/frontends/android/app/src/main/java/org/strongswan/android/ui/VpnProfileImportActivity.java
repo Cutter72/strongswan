@@ -159,7 +159,7 @@ public class VpnProfileImportActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 
-		getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_white_24dp);
+		getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		mDataSource = new VpnProfileDataSource(this);

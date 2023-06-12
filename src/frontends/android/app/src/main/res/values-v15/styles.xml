@@ -15,12 +15,12 @@
 -->
 <resources>
 
-    <style name="ApplicationTheme" parent="ApplicationTheme.Base">
+    <style name="ApplicationTheme" parent="BrandedTheme">
         <item name="android:activatedBackgroundIndicator">@drawable/activated_background</item>
         <item name="android:selectableItemBackground">@drawable/activated_background</item>
     </style>
 
-    <style name="AlertDialogTheme" parent="AlertDialogTheme.Base">
+    <style name="AlertDialogTheme" parent="BrandedTheme">
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 

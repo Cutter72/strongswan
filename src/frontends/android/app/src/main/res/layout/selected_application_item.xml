@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textAppearance="?android:textAppearanceMedium"
+        android:textAppearance="@style/BrandedTextAppearanceMedium"
         android:textColor="@color/checkable_text_color" />
 
     <ImageView android:src="?android:listChoiceIndicatorMultiple"

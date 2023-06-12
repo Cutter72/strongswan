@@ -17,20 +17,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:background="?android:attr/selectableItemBackground"
+    android:background="@color/checkable_card_color"
     android:padding="10dp" >
 
     <TextView android:id="@+id/subject_primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="@style/BrandedTextAppearanceMedium" />
 
     <TextView android:id="@+id/subject_secondary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/subject_primary"
         android:layout_alignLeft="@id/subject_primary"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="@style/BrandedTextAppearanceSmall"
         android:textColor="?android:attr/textColorSecondary" />
 
 </RelativeLayout>

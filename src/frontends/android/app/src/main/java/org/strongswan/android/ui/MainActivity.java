@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements OnVpnProfileSelec
 		ActionBar bar = getSupportActionBar();
 		bar.setDisplayShowHomeEnabled(true);
 		bar.setDisplayShowTitleEnabled(false);
-		bar.setIcon(R.mipmap.ic_launcher);
+		bar.setIcon(R.drawable.branded_app_icon);
 
 		/* load CA certificates in a background task */
 		new LoadCertificatesTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements OnVpnProfileSelec
 			}
 			size = Formatter.formatFileSize(getActivity(), s);
 
-			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+			AlertDialog.Builder builder = new ScrollableDialogBuilder(getActivity())
 					.setTitle(R.string.clear_crl_cache_title)
 					.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
 					{
