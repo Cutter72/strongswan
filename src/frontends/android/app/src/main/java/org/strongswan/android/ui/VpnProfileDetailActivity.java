@@ -27,31 +27,21 @@ import android.os.Bundle;
 import android.security.KeyChain;
 import android.security.KeyChainAliasCallback;
 import android.security.KeyChainException;
-import android.text.Editable;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextUtils;
-import android.text.TextWatcher;
+import android.text.*;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.EditText;
-import android.widget.MultiAutoCompleteTextView;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
-import android.widget.Switch;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.core.text.HtmlCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.strongswan.android.R;
 import org.strongswan.android.data.VpnProfile;
@@ -74,12 +64,6 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.UUID;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.core.text.HtmlCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 public class VpnProfileDetailActivity extends AppCompatActivity
 {
 	private static final int SELECT_TRUSTED_CERTIFICATE = 0;
@@ -95,7 +79,7 @@ public class VpnProfileDetailActivity extends AppCompatActivity
 	private SelectedAppsHandling mSelectedAppsHandling = SelectedAppsHandling.SELECTED_APPS_DISABLE;
 	private SortedSet<String> mSelectedApps = new TreeSet<>();
 	private VpnProfile mProfile;
-	private MultiAutoCompleteTextView mName;
+	private TextInputEditText mName;
 	private TextInputLayoutHelper mNameWrap;
 	private EditText mGateway;
 	private TextInputLayoutHelper mGatewayWrap;
@@ -157,7 +141,7 @@ public class VpnProfileDetailActivity extends AppCompatActivity
 
 		setContentView(R.layout.profile_detail_view);
 
-		mName = (MultiAutoCompleteTextView)findViewById(R.id.name);
+		mName = (TextInputEditText)findViewById(R.id.name);
 		mNameWrap = (TextInputLayoutHelper)findViewById(R.id.name_wrap);
 		mGateway = (EditText)findViewById(R.id.gateway);
 		mGatewayWrap = (TextInputLayoutHelper) findViewById(R.id.gateway_wrap);
@@ -217,11 +201,9 @@ public class VpnProfileDetailActivity extends AppCompatActivity
 		mProfileId = (TextView)findViewById(R.id.profile_id);
 
 		final SpaceTokenizer spaceTokenizer = new SpaceTokenizer();
-		mName.setTokenizer(spaceTokenizer);
 		mRemoteId.setTokenizer(spaceTokenizer);
 		mLocalId.setTokenizer(spaceTokenizer);
 		final ArrayAdapter<String> gatewayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line);
-		mName.setAdapter(gatewayAdapter);
 		mRemoteId.setAdapter(gatewayAdapter);
 
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
