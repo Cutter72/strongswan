@@ -198,7 +198,7 @@
     <string name="login_password">Hasło</string>
     <string name="login_confirm">Połącz</string>
     <string name="error_format">Nie udało się utworzyć tunelu VPN: %1$s.</string>
-    <string name="error_lookup_failed">Nie znaleziono adresu serwer</string>
+    <string name="error_lookup_failed">Nie znaleziono adresu serwera</string>
     <string name="error_unreachable">Serwer jest nieosiągalna</string>
     <string name="error_peer_auth_failed">Błąd przy weryfikacji serwer</string>
     <string name="error_auth_failed">Błąd przy autoryzacji użytkownika</string>
