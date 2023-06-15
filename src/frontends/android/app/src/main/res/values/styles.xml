@@ -77,13 +77,9 @@
         <item name="rippleColor">@color/white</item>
     </style>
 
-    <style name="BrandedTheme.PrimaryButton.Error" parent="BrandedTheme.PrimaryButton">
-        <item name="backgroundTint">@color/error_text</item>
-    </style>
-
     <style name="BrandedDialog" parent="Theme.MaterialComponents.Light.Dialog">
         <item name="buttonBarPositiveButtonStyle">@style/BrandedTheme.PrimaryButton</item>
-        <item name="buttonBarNegativeButtonStyle">@style/BrandedTheme.PrimaryButton.Error</item>
+        <item name="buttonBarNegativeButtonStyle">@style/BrandedTheme.PrimaryButton</item>
         <item name="buttonBarNeutralButtonStyle">@style/BrandedTheme.PrimaryButton</item>
     </style>
 
