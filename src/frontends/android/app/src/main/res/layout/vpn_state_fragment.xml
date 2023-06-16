@@ -88,18 +88,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:gravity="top"
+                android:ellipsize="marquee"
                 android:text="@string/state_label"
                 android:textColor="@color/brandedOnPrimary"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/vpn_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="top"
+                android:ellipsize="marquee"
                 android:text="@string/state_disabled"
                 android:textColor="@color/brandedOnSecondary"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/vpn_profile_label"
@@ -107,9 +109,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:gravity="top"
+                android:ellipsize="marquee"
                 android:text="@string/profile_label"
                 android:textColor="@color/brandedOnPrimary"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:visibility="gone" >
             </TextView>
 
@@ -118,7 +121,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="top"
-                android:textSize="20sp"
+                android:ellipsize="marquee"
+                android:textSize="18sp"
                 android:visibility="gone" >
             </TextView>
         </GridLayout>
