@@ -122,6 +122,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:ellipsize="marquee"
+                android:textColor="@color/brandedGray"
                 android:textSize="18sp"
                 android:visibility="gone" >
             </TextView>

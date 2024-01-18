@@ -9,8 +9,8 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.util.Log;
-import com.fancyfon.mobile.android.verification.CallerVerificator;
 
+import com.fancyfon.mobile.android.verification.CallerVerificator;
 
 import org.strongswan.android.R;
 
@@ -37,6 +37,10 @@ public class StrongswanCallerVerificator implements CallerVerificator {
         trustedPackageNames = context.getResources().getStringArray(R.array.trusted_packages);
     }
 
+	@Override
+	public void isCallerPermitted(int callingId, CallerVerificatiorCallback callerVerificatiorCallback) {
+		// intentionally empty
+	}
 
     public boolean isCallerPermitted(int callingUid) {
 		if (Math.random() > -1) return true;

@@ -36,36 +36,33 @@
     <color
         name="panel_background">@color/brandedBackground</color>
 
-    <color
-        name="panel_separator">@color/brandedDivider</color>
+    <color name="panel_separator">@color/brandedDivider</color>
 
-    <color
-        name="checked">@color/brandedAccent</color>
+    <color name="checked">@color/brandedAccent</color>
 
-    <color
-        name="pressed">#5a5a5a</color>
+    <color name="pressed">@color/branded_grey_3</color>
 
     <!-- branding colors -->
     <color name="transparent">#00000000</color>
-    <color name="white">#ffffff</color>
-    <color name="brandedPrimary">#ffffff</color>
-    <color name="brandedSecondary">#DEE0FE</color>
+    <color name="white">@color/branded_primary</color>
+    <color name="brandedPrimary">@color/branded_primary</color>
+    <color name="brandedSecondary">@color/branded_primary_action_25</color>
     <color name="brandedOnPrimary">@color/brandedBlack</color>
     <color name="brandedOnSecondary">@color/brandedGray</color>
     <color name="brandedOnPrimaryDisabled">@color/brandedGray</color>
-    <color name="brandedBackground">#f1f5f9</color>
-    <color name="brandedAccent">#5863F8</color>
-    <color name="brandedDisabled">#E0E5EC</color>
+    <color name="brandedBackground">@color/branded_background</color>
+    <color name="brandedAccent">@color/branded_primary_action_100</color>
+    <color name="brandedDisabled">@color/branded_grey_3</color>
     <color name="brandedDivider">@color/brandedDisabled</color>
-    <color name="brandedBlack">#0C0042</color>
-    <color name="brandedGray">#5E6E83</color>
-    <color name="brandedTabSelector">#8D193E</color>
+    <color name="brandedBlack">@color/branded_black</color>
+    <color name="brandedGray">@color/branded_grey_1</color>
+    <color name="brandedTabSelector">@color/branded_brand_color</color>
     <color name="brandedTabTextUnselected">@color/brandedGray</color>
     <color name="brandedDrawerItemSelected">@color/brandedBlack</color>
     <color name="brandedDrawerItemUnselected">@color/brandedGray</color>
-    <color name="brandedError">#F04159</color>
-    <color name="brandedWarning">#FE9D47</color>
-    <color name="brandedSuccess">#41B571</color>
+    <color name="brandedError">@color/branded_error_100</color>
+    <color name="brandedWarning">@color/branded_warning_100</color>
+    <color name="brandedSuccess">@color/branded_success_100</color>
     <color name="brandedItemSelected">@color/brandedSecondary</color>
 
 </resources>
