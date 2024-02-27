@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:textIsSelectable="true"
-        android:textColor="@color/brandedOnSecondary"
+        android:textColor="@color/brandedInactiveUnfocusedDisabled100"
         android:textAppearance="@style/BrandedTextAppearanceMedium" />
 
     <TextView

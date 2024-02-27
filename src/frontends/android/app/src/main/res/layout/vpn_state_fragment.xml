@@ -26,7 +26,7 @@
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/brandedBackground"
         android:orientation="vertical" >
 
         <TextView
@@ -38,7 +38,6 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="12dp"
             android:text="Failed to establish VPN: Server is unreachable"
-            android:textColor="@color/brandedBlack"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -53,21 +52,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="@string/show_log"
-                style="@style/BrandedTheme.PrimaryButton" >
+                android:text="@string/show_log" >
             </com.google.android.material.button.MaterialButton>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/retry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/retry"
-                style="@style/BrandedTheme.PrimaryButton" >
+                android:text="@string/retry" >
             </com.google.android.material.button.MaterialButton>
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:background="@drawable/state_background"
@@ -90,7 +87,6 @@
                 android:gravity="top"
                 android:ellipsize="marquee"
                 android:text="@string/state_label"
-                android:textColor="@color/brandedOnPrimary"
                 android:textSize="18sp" />
 
             <TextView
@@ -100,7 +96,7 @@
                 android:gravity="top"
                 android:ellipsize="marquee"
                 android:text="@string/state_disabled"
-                android:textColor="@color/brandedOnSecondary"
+                android:textColor="@color/brandedTextSecondary"
                 android:textSize="18sp" />
 
             <TextView
@@ -111,7 +107,6 @@
                 android:gravity="top"
                 android:ellipsize="marquee"
                 android:text="@string/profile_label"
-                android:textColor="@color/brandedOnPrimary"
                 android:textSize="18sp"
                 android:visibility="gone" >
             </TextView>
@@ -122,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:ellipsize="marquee"
-                android:textColor="@color/brandedGray"
+                android:textColor="@color/brandedTextSecondary"
                 android:textSize="18sp"
                 android:visibility="gone" >
             </TextView>
@@ -147,8 +142,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:text="@string/disconnect"
-            style="@style/BrandedTheme.PrimaryButton" >
+            android:text="@string/disconnect" >
         </com.google.android.material.button.MaterialButton>
 
     </LinearLayout>

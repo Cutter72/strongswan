@@ -73,7 +73,7 @@ public class RecyclerDialogBuilder extends MaterialAlertDialogBuilder {
 	public RecyclerDialogBuilder setMessage(@StringRes int messageId) {
 		TextView tv = new TextView(getContext());
 		tv.setText(messageId);
-		tv.setTextColor(ResourcesCompat.getColor(getContext().getResources(), R.color.brandedBlack, null));
+		tv.setTextColor(ResourcesCompat.getColor(getContext().getResources(), R.color.brandedText, null));
 		setContentView(tv);
 		return this;
 	}
@@ -83,7 +83,7 @@ public class RecyclerDialogBuilder extends MaterialAlertDialogBuilder {
 	public RecyclerDialogBuilder setMessage(@Nullable CharSequence message) {
 		TextView tv = new TextView(getContext());
 		tv.setText(message);
-		tv.setTextColor(ResourcesCompat.getColor(getContext().getResources(), R.color.brandedBlack, null));
+		tv.setTextColor(ResourcesCompat.getColor(getContext().getResources(), R.color.brandedText, null));
 		setContentView(tv);
 		return this;
 	}

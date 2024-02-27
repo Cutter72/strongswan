@@ -18,7 +18,7 @@
     android:id="@+id/log_line"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:textColor="@color/brandedGray"
+    android:textColor="@color/branded_text_secondary"
     android:textSize="9sp"
     android:typeface="monospace"
     app:fontFamily="monospace" />

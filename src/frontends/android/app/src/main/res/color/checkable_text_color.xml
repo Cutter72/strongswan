@@ -14,6 +14,6 @@
     for more details.
 -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_checked="false" android:color="@color/brandedBlack" />
+    <item android:state_checked="false" android:color="@color/brandedText" />
     <item android:color="@color/accent" />
 </selector>

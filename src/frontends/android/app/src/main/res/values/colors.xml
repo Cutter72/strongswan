@@ -22,47 +22,110 @@
         name="primary">@color/brandedPrimary</color>
 
     <color
-        name="primary_dark">@color/brandedGray</color>
+        name="primary_dark">@color/brandedInactiveUnfocusedDisabled100</color>
 
     <color
-        name="error_text">@color/brandedError</color>
+        name="error_text">@color/brandedError100</color>
 
     <color
-        name="warning_text">@color/brandedWarning</color>
+        name="warning_text">@color/brandedWarning100</color>
 
     <color
-        name="success_text">@color/brandedSuccess</color>
+        name="success_text">@color/brandedSuccess100</color>
 
     <color
         name="panel_background">@color/brandedBackground</color>
 
-    <color name="panel_separator">@color/brandedDivider</color>
+    <color name="panel_separator">@color/brandedInactiveUnfocusedDisabled25</color>
 
     <color name="checked">@color/brandedAccent</color>
 
-    <color name="pressed">@color/branded_grey_3</color>
+    <color name="pressed">@color/brandedInactiveUnfocusedDisabled25</color>
 
-    <!-- branding colors -->
     <color name="transparent">#00000000</color>
-    <color name="white">@color/branded_primary</color>
+
+    <!-- ↓↓↓ USE ONLY BELOW COLORS ↓↓↓ -->
+    <!-- Compatible with Android_UI_Utilities_Library:4.0.3 lib -->
+    <!-- BELOW colors are 1 to 1 links to UI lib colors to loose coupling and to be able to detach or change lib without a big harm -->
+    <!-- IN THIS PROJECT USE camelCasedNames TO AVOID DIRECT LINKS/REFERENCES TO LIB -->
+    <!-- DO NOT USE snake_case_names. They refers to Android_UI_Utilities_Library lib -->
+
+    <!-- Brand colors -->
     <color name="brandedPrimary">@color/branded_primary</color>
-    <color name="brandedSecondary">@color/branded_primary_action_25</color>
-    <color name="brandedOnPrimary">@color/brandedBlack</color>
-    <color name="brandedOnSecondary">@color/brandedGray</color>
-    <color name="brandedOnPrimaryDisabled">@color/brandedGray</color>
+    <color name="brandedOnPrimary">@color/branded_on_primary</color>
+    <color name="brandedBrandColor">@color/branded_brand_color</color>
+    <!-- Primary action -->
+    <color name="brandedPrimaryAction100">@color/branded_primary_action_100</color>
+    <color name="brandedPrimaryAction50">@color/branded_primary_action_50</color>
+    <color name="brandedPrimaryAction25">@color/branded_primary_action_25</color>
+    <!-- Background -->
     <color name="brandedBackground">@color/branded_background</color>
-    <color name="brandedAccent">@color/branded_primary_action_100</color>
-    <color name="brandedDisabled">@color/branded_grey_3</color>
-    <color name="brandedDivider">@color/brandedDisabled</color>
-    <color name="brandedBlack">@color/branded_black</color>
-    <color name="brandedGray">@color/branded_grey_1</color>
-    <color name="brandedTabSelector">@color/branded_brand_color</color>
-    <color name="brandedTabTextUnselected">@color/brandedGray</color>
-    <color name="brandedDrawerItemSelected">@color/brandedBlack</color>
-    <color name="brandedDrawerItemUnselected">@color/brandedGray</color>
-    <color name="brandedError">@color/branded_error_100</color>
-    <color name="brandedWarning">@color/branded_warning_100</color>
-    <color name="brandedSuccess">@color/branded_success_100</color>
-    <color name="brandedItemSelected">@color/brandedSecondary</color>
+    <!-- Success -->
+    <color name="brandedSuccess100">@color/branded_success_100</color>
+    <color name="brandedSuccess50">@color/branded_success_50</color>
+    <color name="brandedSuccess25">@color/branded_success_25</color>
+    <!-- Warning -->
+    <color name="brandedWarning100">@color/branded_warning_100</color>
+    <color name="brandedWarning50">@color/branded_warning_50</color>
+    <color name="brandedWarning25">@color/branded_warning_25</color>
+    <!-- Error -->
+    <color name="brandedError100">@color/branded_error_100</color>
+    <color name="brandedError50">@color/branded_error_50</color>
+    <color name="brandedError25">@color/branded_error_25</color>
+
+    <!-- Inactive colors -->
+    <color name="brandedInactiveUnfocusedDisabled100">@color/branded_inactive_unfocused_disabled_100</color>
+    <color name="brandedInactiveUnfocusedDisabled50">@color/branded_inactive_unfocused_disabled_50</color>
+    <color name="brandedInactiveUnfocusedDisabled25">@color/branded_inactive_unfocused_disabled_25</color>
+
+    <!-- Secondary active colors -->
+    <color name="brandedActiveFocusedEnabledSecondary100">@color/branded_active_focused_enabled_secondary_100</color>
+    <color name="brandedActiveFocusedEnabledSecondary50">@color/branded_active_focused_enabled_secondary_50</color>
+    <color name="brandedActiveFocusedEnabledSecondary25">@color/branded_active_focused_enabled_secondary_25</color>
+
+    <!-- Accent -->
+    <color name="brandedAccent">@color/branded_accent</color>
+    <color name="brandedOnAccent">@color/branded_on_accent</color>
+    <!-- CardView background -->
+    <color name="brandedCardBackground">@color/branded_card_background</color>
+    <!-- Manus like drawer layout background -->
+    <color name="brandedMenuBackground">@color/branded_menu_background</color>
+
+    <!-- Status bar and navigation bar color -->
+    <color name="brandedStatusBar">@color/branded_status_bar</color>
+    <color name="brandedNavigationBar">@color/branded_navigation_bar</color>
+
+    <!-- Toolbar colors -->
+    <color name="brandedToolbarIcon">@color/branded_toolbar_icon</color>
+    <color name="brandedToolbarText">@color/branded_toolbar_text</color>
+    <color name="brandedToolbarTextSecondary">@color/branded_toolbar_text_secondary</color>
+    <color name="brandedToolbarBackground">@color/branded_toolbar_background</color>
+
+    <!-- Icons -->
+    <color name="brandedIcon">@color/branded_icon</color>
+    <color name="brandedIconSecondary">@color/branded_icon_secondary</color>
+    <color name="brandedIconAccent">@color/branded_icon_accent</color>
+    <!-- Active colors -->
+    <color name="brandedActiveFocusedEnabled100">@color/branded_active_focused_enabled_100</color>
+    <color name="brandedActiveFocusedEnabled50">@color/branded_active_focused_enabled_50</color>
+    <color name="brandedActiveFocusedEnabled25">@color/branded_active_focused_enabled_25</color>
+
+    <!-- Buttons -->
+    <color name="brandedBtnColor">@color/branded_btn_color</color>
+    <color name="brandedBtnColorDisabled">@color/branded_btn_color_disabled</color>
+    <color name="brandedBtnTextColor">@color/branded_btn_text_color</color>
+    <color name="brandedBtnTextColorDisabled">@color/branded_btn_text_color_disabled</color>
+
+    <!-- Text colors -->
+    <!-- Text color selector as a main color for texts across whole application with disabled/inactive color variant -->
+    <color name="brandedText">@color/branded_text</color>
+    <!-- Primary/active/enabled text color -->
+    <color name="brandedTextPrimary">@color/branded_text_primary</color>
+    <!-- Inactive/disabled text color -->
+    <color name="brandedTextDisabledInactive">@color/branded_text_disabled_inactive</color>
+    <!-- Secondary text color -->
+    <color name="brandedTextSecondary">@color/branded_text_secondary</color>
+    <color name="brandedTextSelected">@color/branded_text_selected</color>
+    <color name="brandedTextUnselected">@color/branded_text_unselected</color>
 
 </resources>

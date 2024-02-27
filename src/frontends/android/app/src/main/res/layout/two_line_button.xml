@@ -35,6 +35,6 @@
         android:layout_below="@android:id/text1"
         android:layout_alignLeft="@android:id/text1"
         android:textAppearance="@style/BrandedTextAppearanceSmall"
-        android:textColor="?android:attr/textColorSecondary" />
+        android:textColor="@color/brandedTextSecondary" />
 
 </RelativeLayout>

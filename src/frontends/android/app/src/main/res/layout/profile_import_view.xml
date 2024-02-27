@@ -45,8 +45,7 @@
             android:drawablePadding="8dp"
             android:textStyle="bold"
             android:text="@string/profile_import_exists"
-            android:textAppearance="@style/BrandedTextAppearanceSmall"
-            android:textColor="@color/brandedOnPrimary" />
+            android:textAppearance="@style/BrandedTextAppearanceSmall" />
 
         <LinearLayout
             android:id="@+id/basic_data_group"

@@ -38,7 +38,7 @@
         android:layout_below="@android:id/text1"
         android:layout_alignLeft="@android:id/text1"
         android:layout_alignRight="@android:id/text1"
-        android:textColor="@color/brandedOnSecondary"
+        android:textColor="@color/brandedInactiveUnfocusedDisabled100"
         android:textAppearance="@style/BrandedTextAppearanceSmall"
         android:singleLine="true"
         android:ellipsize="end"
