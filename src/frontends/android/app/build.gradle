@@ -34,6 +34,17 @@ android {
                 v1SigningEnabled true
                 v2SigningEnabled true
             }
+
+            release {
+                storeFile file("/Users/jacekdermont/praca/Android_Keystore/android.jks")
+                storePassword "xxx"
+                keyAlias "fancyfon"
+                keyPassword "xxx"
+
+                // Optional, specify signing versions used
+                v1SigningEnabled true
+                v2SigningEnabled true
+            }
         }
     }
 
@@ -50,8 +61,8 @@ android {
         }
         fancyfon {
             applicationId "com.fancyfon.strongswan"
-            versionName "1.9.1.0"
-            versionCode 61
+            versionName "1.9.2.0"
+            versionCode 62
             setProperty("archivesBaseName", "strongswan_$versionName")
 
         }
@@ -86,6 +97,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
