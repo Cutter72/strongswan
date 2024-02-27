@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.util.Log;
 
+import com.fancyfon.mobile.android.verification.CallerVerificatiorCallback;
 import com.fancyfon.mobile.android.verification.CallerVerificator;
 
 import org.strongswan.android.R;
