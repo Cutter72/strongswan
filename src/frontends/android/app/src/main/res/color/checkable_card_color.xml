@@ -6,6 +6,6 @@
     Author Paweł Drelich <pawel.drelich@techstep.io>
 -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/brandedItemSelected" android:drawable="@color/brandedItemSelected" android:state_activated="true" />
+    <item android:color="@color/brandedPrimaryAction25" android:drawable="@color/brandedPrimaryAction25" android:state_activated="true" />
     <item android:color="@color/transparent" android:drawable="@color/transparent" />
 </selector>

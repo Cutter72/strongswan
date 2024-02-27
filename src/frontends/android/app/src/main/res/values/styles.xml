@@ -13,39 +13,35 @@
     or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
     for more details.
 -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Strongswan theme -->
-    <style name="StrongswanTheme" parent="Theme.MaterialComponents.Light">
+    <style name="ApplicationTheme.Base" parent="BrandedTheme">
         <item name="colorAccent">@color/accent</item>
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="android:alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="android:alertDialogTheme">@style/ApplicationThemeDialog</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
-    <!-- Branded theme -->
-    <style name="BrandedTheme" parent="StrongswanTheme">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/brandedPrimary</item>
-        <item name="colorOnPrimary">@color/brandedOnPrimary</item>
-        <item name="colorPrimaryDark">@color/brandedOnSecondary</item>
-        <item name="colorAccent">@color/brandedAccent</item>
-        <item name="statusBarBackground">@color/brandedPrimary</item>
-        <!-- tools:targetApi="27" will apply this item on API 27 and higher while separating this in dedicated v27 folder will apply it only in API 27 -->
-        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
-        <item name="android:navigationBarColor">@color/brandedPrimary</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@color/brandedPrimary</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    <style name="ApplicationTheme.Base.NoActionBar" parent="ApplicationTheme.Base">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AlertDialogTheme.Base" parent="Theme.AppCompat.Dialog.Alert">
+    <!-- Strongswan theme -->
+    <style name="ApplicationTheme" parent="ApplicationTheme.Base">
+    </style>
+
+    <style name="ApplicationThemeDialog.Base" parent="BrandedDialog">
         <item name="colorAccent">@color/accent</item>
     </style>
 
-    <style name="TransparentActivity" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="ApplicationThemeDialog" parent="ApplicationThemeDialog.Base">
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="TransparentActivity" parent="ApplicationTheme.Base.NoActionBar">
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
@@ -56,31 +52,15 @@
     </style>
 
     <style name="BrandedTextAppearanceSmall" parent="android:TextAppearance.DeviceDefault.Small">
-        <item name="android:textColor">@color/brandedBlack</item>
+        <item name="android:textColor">@color/branded_text_color_selector</item>
     </style>
 
     <style name="BrandedTextAppearanceMedium" parent="android:TextAppearance.DeviceDefault.Medium">
-        <item name="android:textColor">@color/brandedBlack</item>
+        <item name="android:textColor">@color/branded_text_color_selector</item>
     </style>
 
     <style name="BrandedTextAppearanceLarge" parent="android:TextAppearance.DeviceDefault.Large">
-        <item name="android:textColor">@color/brandedBlack</item>
-    </style>
-
-    <style name="BrandedTheme.PrimaryButton" parent="BrandedTheme">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:layout_marginLeft">4dp</item>
-        <item name="android:layout_marginRight">4dp</item>
-        <item name="backgroundTint">@color/brandedAccent</item>
-        <item name="rippleColor">@color/white</item>
-    </style>
-
-    <style name="BrandedDialog" parent="Theme.MaterialComponents.Light.Dialog">
-        <item name="buttonBarPositiveButtonStyle">@style/BrandedTheme.PrimaryButton</item>
-        <item name="buttonBarNegativeButtonStyle">@style/BrandedTheme.PrimaryButton</item>
-        <item name="buttonBarNeutralButtonStyle">@style/BrandedTheme.PrimaryButton</item>
+        <item name="android:textColor">@color/branded_text_color_selector</item>
     </style>
 
 </resources>
